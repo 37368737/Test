@@ -1,44 +1,20 @@
 const Cars = [];
 
-const car1 = {
-    "Model": "Camry",
-    "Brand": "Toyota",
-    "Engine size": "2.5 liters",
-    "Shape": "Sedan",
-    "Doors": 4
-};
+class Car{
+    constructor(model, brand, engineSize, shape, doors){
+        this.Model = model;
+        this.Brand = brand;
+        this["Engine size"] = engineSize;
+        this.Shape = shape;
+        this.Doors = doors;
+    }
+}
 
-const car2 = {
-    "Model": "3 Series",
-    "Brand": "BMW",
-    "Engine size": "2.0 liters",
-    "Shape": "Sedan",
-    "Doors": 4
-};
-
-const car3 = {
-    "Model": "Mustang",
-    "Brand": "Ford",
-    "Engine size": "5.0 liters",
-    "Shape": "Coupe",
-    "Doors": 2
-};
-
-const car4 = {
-    "Model": "Civic",
-    "Brand": "Honda",
-    "Engine size": "1.5 liters",
-    "Shape": "Hatchback",
-    "Doors": 5
-};
-
-const car5 = {
-    "Model": "E-Class",
-    "Brand": "Mercedes",
-    "Engine size": "3.0 liters",
-    "Shape": "Wagon",
-    "Doors": 5
-};
+const car1 = new Car("Camry", "Toyota", "2.5 liters", "Sedan", 4);
+const car2 = new Car("3 Series", "BMW", "2.0 liters", "Sedan", 4);
+const car3 = new Car("Mustang", "Ford", "5.0 liters", "Coupe", 2);
+const car4 = new Car("Civic", "Honda", "1.5 liters", "Hatchback", 5);
+const car5 = new Car("E-Class", "Mercedes", "3.0 liters", "Wagon", 5);
 
 Cars.push(car1);
 Cars.push(car2);
@@ -82,18 +58,17 @@ function findCarByShape(shape){
     }
 
     function searchForCarShape() {
-    rl.question("Enter the shape to search for (or 'exit' to quit): ", (shape) => {
-        if (shape.toLowerCase() === 'exit'){
-            rl.close();
-        } else {
+    rl.question("Enter the shape to search for: ", (shape) => {
         const carWithShape = findCarByShape(shape.toLowerCase());
         if (carWithShape.length > 0){
             console.log(carWithShape);
+            rl.close();
+
         }   else {
             console.log("No vehicle of the shape " + shape + " is within the list.");
+            rl.close();
+
         }
-        searchForCarShape();
-    }
     });
 }
 searchForCarShape();
